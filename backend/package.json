@@ -1,0 +1,14 @@
+{
+  "name": "mern_backend",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "kishan@kinesis.games",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.1",
+    "mongoose": "^5.9.19"
+  }
+}

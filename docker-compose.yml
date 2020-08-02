@@ -13,4 +13,16 @@ services:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
       - ./mongo-volume:/data/db
     ports:
-      - '27997-27999:27017-27019'
+      - ${DB_PORT}:27017
+  backend:
+    image: 'node'
+    container_name: '${PROJECT_NAME}-backend'
+    restart: always
+    links:
+      - database
+    volumes:
+      - ./backend:/usr/src/app
+    ports:
+      - ${BACKEND_PORT}:8080
+    command: >
+      bash -c "cd /usr/src/app && npm install && node server.js"
