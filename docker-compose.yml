@@ -26,3 +26,16 @@ services:
       - ${BACKEND_PORT}:8080
     command: >
       bash -c "cd /usr/src/app && npm install && node server.js"
+  frontend:
+    image: 'node'
+    container_name: '${PROJECT_NAME}-frontend'
+    restart: always
+    stdin_open: true
+    links:
+      - backend
+    volumes:
+      - ./frontend:/usr/src/app
+    ports:
+      - ${FRONTEND_PORT}:3000
+    command: >
+      bash -c "cd /usr/src/app && npm install && npm start"
